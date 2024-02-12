@@ -1,0 +1,11 @@
+.SearchForm-row {
+    display: grid;
+    column-gap: 30px;
+    grid-column-gap: 30px;
+    display: inline;
+    align-items: center;
+}
+
+.SearchForm {
+    margin-bottom: 1rem;
+}

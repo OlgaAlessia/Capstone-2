@@ -1,0 +1,9 @@
+# dependencies
+lego-frontend/node_modules
+lego-backend/node_modules
+
+
+# misc
+.env
+lego-backend/.env
+

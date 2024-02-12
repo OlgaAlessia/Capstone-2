@@ -1,0 +1,120 @@
+.LegoLists-list {
+  width: 100%;
+
+}
+
+.LegoLists-list {
+  align-items: center;
+}
+
+.LegoLists-list a {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: rgb(255, 255, 255);
+  color: #2c5777;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 1rem;
+}
+
+.LegoLists-name {
+  margin-left: 2rem;
+}
+
+.LegoLists-list a small {
+  margin-right: 2rem;
+}
+
+
+.LegoSetSearch-sets,
+.LegoList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  list-style-type: none;
+}
+
+.LegoSetSearch-sets {
+  padding-top: 2rem;
+}
+
+.LegoSetSearch .LegoSetSearch-sets a {
+  color: #198754;
+}
+
+
+.LegoSet {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: rgba(100, 49, 49, 0.392) 0px 5px 15px;
+}
+
+.LegoSet a {
+  color: #c52828;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0.5rem;
+}
+
+.LegoSet img {
+  object-fit: cover;
+  height: 150px;
+}
+
+
+
+.LegoSetDetails {
+  color: black;
+}
+
+.LegoAlterates-row {
+  border: solid 1px lightgray;
+  padding: 15px;
+  background-color: white;
+}
+
+.LegoAlterates-title {
+  text-align: left;
+  border-bottom: #f9f946 2px solid;
+  margin: 10px 0px 40px 0px;
+}
+
+.LegoAlterates {
+  border: solid 2px gray;
+  margin-bottom: 10px;
+  background-color: white;
+  
+}
+
+
+
+.LegoAlterates-img {
+  width: 100%;
+  height: 144px;
+}
+
+.LegoAlterates-col {
+  padding: 10px 5px;
+}
+
+.LegoAlterates-set {
+  border: solid 1px #ddd;
+  margin-bottom: 10px;
+  background-color: var(--bg-sets);
+
+}
+
+.LegoAlterates-set-name a{
+  color: black;
+  text-decoration: none;
+}
+
+.LegoAlterates-by a{
+  color: #959519;
+}
