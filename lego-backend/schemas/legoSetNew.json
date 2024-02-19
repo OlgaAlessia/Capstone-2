@@ -14,12 +14,12 @@
       "maxLength": 30
     },
     "year": {
-      "type": "string",
+      "type": "integer",
       "minLength": 4,
       "maxLength": 4
     },
     "theme_id": {
-      "type": "string"
+      "type": "integer"
     },
     "num_parts": {
       "type": "integer",
@@ -36,7 +36,7 @@
   },
   "additionalProperties": false,
   "required": [
-    "num",
+    "set_num",
     "name",
     "num_parts",
     "set_img_url"

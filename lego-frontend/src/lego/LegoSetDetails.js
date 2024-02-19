@@ -32,7 +32,7 @@ function LegoSetDetails() {
     }, [set_num]);
 
     return (
-        <section className="container">
+        <section className="LegoSetDetails container">
             <div id="page_header" className="hidden-xs page-header page-header-xxs page-header-bg-yellow">
                 <div className="row">
                     <h2>{title}</h2>
@@ -40,7 +40,7 @@ function LegoSetDetails() {
             </div>
             <div className="row">
                 <div className="col-md-9 col-sm-9">
-                    <img className="img-responsive" title={title}
+                    <img className="LegoSetDetails-img" title={title}
                         alt={title}
                         src={legoSet.set_img_url}
                         width="500" draggable="false" />
@@ -64,6 +64,7 @@ function LegoSetDetails() {
                     </table>
                 </div>
             </div>
+            {legoAlterates.length!=0 && (
             <div className="row LegoAlterates-row">
                 <h3 className="LegoAlterates-title">Alternate Builds (MOCs)</h3>
                 {legoAlterates.map(moc => (
@@ -71,6 +72,7 @@ function LegoSetDetails() {
                         alterate={moc}
                     />))}
             </div>
+            )}
         </section>
     )
 }

@@ -8,9 +8,9 @@ async function commonBeforeAll() {
   // noinspection SqlWithoutWhere
   await db.query("DELETE FROM users");
 
-
   // --------- User
   await User.register({
+    id: 1,
     username: "u1",
     firstName: "U1F",
     lastName: "U1L",
@@ -20,6 +20,7 @@ async function commonBeforeAll() {
   });
 
   await User.register({
+    id: 2,
     username: "u2",
     firstName: "U2F",
     lastName: "U2L",
@@ -29,6 +30,7 @@ async function commonBeforeAll() {
   });
 
   await User.register({
+    id: 3,
     username: "uAdmin",
     firstName: "UAF",
     lastName: "UAL",

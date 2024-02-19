@@ -8,12 +8,12 @@ body {
   height: 100vh;
   overflow-x: hidden;
   color: black;
-/*
-  background: url("../public/background1.jpg");
+
+  background: url("../public/background.jpg");
   background-attachment: fixed;
   background-position: 50%;
   background-repeat: no-repeat;
-  background-size: cover;*/
+  background-size: cover;
 }
 
 code {

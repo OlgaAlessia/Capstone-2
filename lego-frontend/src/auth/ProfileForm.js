@@ -22,7 +22,7 @@ function ProfileForm() {
     async function handleSubmit(evt) {
         evt.preventDefault();
 
-        if(!formData.bio) formData.bio = ""
+        if (!formData.bio) formData.bio = ""
 
         const userData = {
             firstName: formData.firstName,
@@ -45,24 +45,26 @@ function ProfileForm() {
 
         setCurrentUser(currentUser => ({ ...currentUser, data: updatedUserData }));
 
-        setTimeout(() => { navigate("/profile") }, 2000) 
+        setTimeout(() => { navigate("/profile") }, 2000);
     };
 
 
     /** Update local state w/curr state of input elem */
 
-    function handleChange(evt){
+    function handleChange(evt) {
         const { name, value } = evt.target;
         setFormData(fData => ({ ...fData, [name]: value }));
         setFormErrors([]);
     };
 
 
-
     return (
         <div className="ProfileForm">
             <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                 <h3 className="mb-3">Profile</h3>
+                {
+                    isUpdated ? <Alert type="success" messages={["Updated successfully"]} /> : null
+                }
                 <div className="card">
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>
@@ -116,11 +118,9 @@ function ProfileForm() {
                             {
                                 formErrors.length ? <Alert type="danger" messages={formErrors} /> : null
                             }
-                            {
-                                isUpdated ? <Alert type="success" messages={["Updated successfully"]} /> : null
-                            }
                             <div className="d-grid">
                                 <button className="btn btn-primary">Save Changes</button>
+                                <a href="/profile" className="btn btn-primary mt-3">Go Back</a>
                             </div>
                         </form>
                     </div>

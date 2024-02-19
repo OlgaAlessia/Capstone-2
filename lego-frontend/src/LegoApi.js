@@ -87,6 +87,14 @@ class LegoApi {
 
   //----------------- LEGO SET ----------------
 
+  /** Post a Lego Set by num. */
+
+  static async createSet(data) {
+    let res = await this.request('legosets/', data, "post");
+    return res;
+  }
+
+
   /** Get details on a Lego Set by num. */
 
   static async getLegoSet(num) {
@@ -95,6 +103,17 @@ class LegoApi {
       res = await RebrickableApi.fetchLegoSetByNum(num);
     }
     return res;
+  }
+
+  /** Get all Lego Set by user_id. */
+  static async getAllLegoSetsByUser(user_id) {
+    let res = await this.request(`legosets/byuser/${user_id}`);
+
+    let myListSetsNums = [];
+    res.set.map(val => (myListSetsNums.push(val.lego_sets_num))
+    )
+
+    return myListSetsNums;
   }
 
   /** Get a Lego Set with nameLike. */
@@ -108,6 +127,43 @@ class LegoApi {
     }
     return res.set;
   }
+
+  //----------------- LIST LEGO SET ----------------
+
+  /** Create a List of Set */
+
+  static async createListSet(name, user_id) {
+    return await this.request('lists/', { name, user_id }, "post");
+  }
+
+  /** Get the List of Lego Set with the user_id. */
+
+  static async getListByUser(user_id) {
+
+    let res = await this.request(`lists/${user_id}`);
+    return res;
+
+  }
+
+ /** Add a Lego Set to a list with the list_id and set_num. */
+
+  static async addSetToList(list_id, sets_num) {
+
+    let res = await this.getLegoSet(sets_num);
+    const data = {
+      set_num: res.set_num,
+      name: res.name,
+      year: res.year,
+      theme_id: res.theme_id,
+      num_parts: res.num_parts,
+      set_img_url: res.set_img_url
+    }
+
+    await this.createSet(data);
+
+    return await this.request(`lists/${list_id}/set/${sets_num}`, {}, "post");
+  }
+
 }
 
 export default LegoApi;

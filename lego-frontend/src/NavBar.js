@@ -28,7 +28,7 @@ function NavBar({ logout }) {
 
   return (
     <Navbar className="NavBar">
-      <NavLink className="NavBar-brand" exact to="/" > The Art of Lego </NavLink>
+      <NavLink className="NavBar-brand" to="/" > The Art of Lego </NavLink>
 
       {!currentUser ? userNotLogged() : userLoggeIn()}
 

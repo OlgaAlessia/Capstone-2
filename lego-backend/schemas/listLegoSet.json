@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/listLegoSet.json",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 30
+    },
+    "user_id": {
+      "type": "integer",
+        "minLength": 1
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "user_id"
+  ]
+}

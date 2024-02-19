@@ -8,21 +8,21 @@ const express = require("express");
 const router = new express.Router();
 
 
-const { ensureCorrectUserOrAdmin } = require("../middleware/auth");
+const { ensureLoggedIn, ensureCorrectUserOrAdmin } = require("../middleware/auth");
 const legoSetNewSchema = require("../schemas/legoSetNew.json");
 const legoSetSearchSchema = require("../schemas/legoSetFilter.json");
 const { BadRequestError } = require("../expressError");
 
-/** POST / { legoSet } =>  { legoSet }
+/** POST / { lego_sets } =>  { lego_sets }
  *
- * legoSet should be { handle, name, description, numEmployees, logoUrl }
+ * legoSet should be { set_num, name, year, theme_id, num_parts, set_img_url, link_instruction }
  *
- * Returns { handle, name, description, numEmployees, logoUrl }
+ * Returns { name, year, num_parts, set_img_url, link_instruction }
  *
  * Authorization required: login
  */
 
-router.post("/", ensureCorrectUserOrAdmin, async function (req, res, next) {
+router.post("/", ensureLoggedIn, async function (req, res, next) {
     try {
         const validator = jsonschema.validate(req.body, legoSetNewSchema);
         if (!validator.valid) {
@@ -71,7 +71,6 @@ router.get("/", async function (req, res, next) {
 
 router.get("/:num", async function (req, res, next) {
     try {
-        
         const set = await LegoSet.get(req.params.num);
         return res.json({ set });
     } catch (err) {
@@ -94,5 +93,22 @@ router.delete("/:num", ensureCorrectUserOrAdmin, async function (req, res, next)
     }
 });
 
+
+
+/** GET /[num]  =>  { legoSet }
+ *
+ *  LegoSet is { num, name, released, theme_id, num_parts, set_img_url }
+ *
+ *  Authorization required: none
+ */
+
+router.get("/byuser/:user_id", async function (req, res, next) {
+    try {
+        const set = await LegoSet.getSetsByUser(req.params.user_id);
+        return res.json({ set });
+    } catch (err) {
+        return next(err);
+    }
+});
 
 module.exports = router;

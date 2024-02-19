@@ -1,29 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import RebrickableApi from "../RebrickableApi"
+import React from "react";
+import { useLocation } from "react-router-dom";
 import LegoSet from "./LegoSet"
 import "./Lego.css";
 
-function LegoList() {
-    const { list_id } = useParams();
+const LegoList = () => {
+    let location = useLocation();
+    const { lists } = location.state;
 
-    const [myLegoSets, setMyLegoSets] = useState([]);
-
-    useEffect(() => {
-        RebrickableApi.fetchMyListSets(list_id).then((results) => setMyLegoSets(results.results));
-    }, [list_id]);
-
-    if (!myLegoSets) return (<div> Loading ... </div>);
+    if (!lists) return (<div> You don't have any Sets in This List ... </div>);
 
     return (
-        <div className="LegoList">
-            {myLegoSets.map((set) => 
+        <>
+        <a href="/legolists" className="btn btn-danger mb-3">Go Back</a>  
+        <div className="LegoList" >
+            {lists.map((set) => 
                 <LegoSet
-                    key={set.set_url}
-                    set={set.set}
-                />)}
+                    key={set.set_num}
+                    set={set}
+                />)
+            }
         </div>
+        </>
     );
-};
+  };
 
 export default LegoList;

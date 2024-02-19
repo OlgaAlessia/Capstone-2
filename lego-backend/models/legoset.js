@@ -19,12 +19,12 @@ class Legoset {
 
     static async create({ set_num, name, year, theme_id, num_parts, set_img_url, link_instruction }) {
         const duplicateCheck = await db.query(
-            `SELECT set_num
+            `SELECT *
             FROM lego_sets
             WHERE set_num = $1`, [set_num]);
 
         if (duplicateCheck.rows[0])
-            throw new BadRequestError(`Duplicate Lego Set: ${set_num}`);
+            return duplicateCheck.rows[0];
 
         const result = await db.query(
             `INSERT INTO lego_sets
@@ -39,28 +39,12 @@ class Legoset {
     }
 
 
-
-    /** Given a legoSet set_num, return data about the set.
-    *
-    * Returns { set_num, name, year, theme_id, num_parts, set_img_url}
-    *
-    */
-
-    static async get(set_num) {
-        const legoSetRes = await db.query(
-            `SELECT set_num, name, year, num_parts, set_img_url
-            FROM lego_sets
-            WHERE set_num = $1`, [set_num]);
-
-        const legoSet = legoSetRes.rows[0];
-
-        return legoSet;
-    }
-
     /** Find all legoSets (optional filter on searchFilters).
     *
     *   searchFilters (all optional):
     *   - nameLike (will find case-insensitive, partial matches)
+    *   - min year
+    *   - max year
     *
     *   Returns [{ set_num, name, year, num_parts, set_img_url }, ...]
     */
@@ -90,6 +74,47 @@ class Legoset {
         const legoSetRes = await db.query(finalQuery, queryValues);
         return legoSetRes.rows;
     }
+
+
+    /** Given a legoSet set_num, return data about the set.
+    *
+    * Returns { set_num, name, year, theme_id, num_parts, set_img_url}
+    *
+    */
+
+    static async get(set_num) {
+        const legoSetRes = await db.query(
+            `SELECT set_num, name, year, num_parts, set_img_url
+            FROM lego_sets
+            WHERE set_num = $1`, [set_num]);
+
+        const legoSet = legoSetRes.rows[0];
+
+        return legoSet;
+    }
+
+
+    /** Given a user_id, return all the Sets in lego Lists.
+    *
+    * Returns { set_num, name, year, theme_id, num_parts, set_img_url}
+    *
+    */
+
+    static async getSetsByUser(user_id) {
+
+        const legoSetRes = await db.query(
+            `SELECT lego_sets_num
+            FROM list_sets AS ls 
+            JOIN list_lego_sets AS lls ON ls.id=lls.list_sets_id
+            WHERE ls.user_id = $1;`, [user_id]);
+
+        const legoSet = legoSetRes.rows;
+
+        if (legoSet.length === 0) throw new NotFoundError(`No Lists Sets for User: ${user_id}`);
+
+        return legoSet;
+    }
+
 
 
     /** Delete given legoSet from database; returns undefined.

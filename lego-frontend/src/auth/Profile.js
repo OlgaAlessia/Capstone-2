@@ -34,8 +34,7 @@ function Profile() {
                         </div>
                     </div>
                     <a href="/edit_profile" className="btn btn-info mx-4 mb-4">Edit Profile</a>
-                </div>
-
+                </div>            
             </div>
         </div>
     )

@@ -98,14 +98,15 @@ class User {
 
   /** Given a username, return data about user.
    *
-   * Returns { username, first_name, last_name, is_admin }
+   * Returns { id, username, first_name, last_name, photo_url, bio, is_admin }
    *
    * Throws NotFoundError if user not found.
    **/
 
   static async get(username) {
     const userRes = await db.query(
-      `SELECT username,
+      `SELECT id,
+              username,
               first_name AS "firstName",
               last_name AS "lastName",
               email,

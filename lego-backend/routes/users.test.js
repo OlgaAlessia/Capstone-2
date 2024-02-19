@@ -133,6 +133,7 @@ describe("GET /users", function () {
           firstName: "U1F",
           lastName: "U1L",
           email: "user1@user.com",
+          bio: null,
           isAdmin: false,
         },
         {
@@ -140,6 +141,7 @@ describe("GET /users", function () {
           firstName: "U2F",
           lastName: "U2L",
           email: "user2@user.com",
+          bio: null,
           isAdmin: false,
         },
         {
@@ -147,6 +149,7 @@ describe("GET /users", function () {
           firstName: "UAF",
           lastName: "UAL",
           email: "userAdmin@user.com",
+          bio: null,
           isAdmin: true,
         },
       ],
@@ -185,10 +188,13 @@ describe("GET /users/:username", function () {
       .set("authorization", `Bearer ${uAdminToken}`);
     expect(resp.body).toEqual({
       user: {
+        id: expect.any(Number),
         username: "u1",
         firstName: "U1F",
         lastName: "U1L",
         email: "user1@user.com",
+        bio: null,
+        photo_url: "../default-pic.png",
         isAdmin: false
       },
     });
@@ -231,6 +237,7 @@ describe("PATCH /users/:username", () => {
         firstName: "New",
         lastName: "U1L",
         email: "user1@user.com",
+        bio: null,
         isAdmin: false,
       },
     });
@@ -278,6 +285,7 @@ describe("PATCH /users/:username", () => {
         firstName: "U1F",
         lastName: "U1L",
         email: "user1@user.com",
+        bio: null,
         isAdmin: false,
       },
     });

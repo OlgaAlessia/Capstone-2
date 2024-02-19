@@ -5,14 +5,16 @@ import SearchForm from "../helpers/SearchForm";
 
 import "./Lego.css";
 
-
 function LegoSetSearch() {
+
     const [legoSets, setLegoSets] = useState([]);
 
+
     useEffect(function loadLegoSetsInfo() {
-        console.debug("LegoSetSearch useEffect loadLegoSetsInfo");
+        //console.debug("LegoSetSearch useEffect loadLegoSetsInfo");
         searchByName();
     }, []);
+
 
     /** Handles searchByName */
     async function searchByName(nameLike) {
@@ -34,9 +36,9 @@ function LegoSetSearch() {
     return (
         <div className="LegoSetSearch">
 
-            <SearchForm key="byName" searchFor={searchByName} term="name" />
+            <SearchForm key="byName" searchValue={searchByName} term="name" />
             <br />
-            <SearchForm key="byNum" searchFor={searchByNum} term="lego set number" />
+            <SearchForm key="byNum" searchValue={searchByNum} term="lego set number" />
 
             {legoSets.length
                 ? (

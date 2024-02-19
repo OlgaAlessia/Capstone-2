@@ -4,11 +4,12 @@ import Alert from "../helpers/Alert";
 import "./RegisterForm.css";
 
 
-function RegisterForm({register}) {
+function RegisterForm({ register }) {
 
     const INITIAL_STATE = { username: "", password: "", firstName: "", lastName: "", email: "" };
     const [formData, setFormData] = useState(INITIAL_STATE);
     const [formErrors, setFormErrors] = useState([]);
+    const [isRegister, setIsRegister] = useState(false);
     const navigate = useNavigate();
 
     async function handleSubmit(evt) {
@@ -17,7 +18,9 @@ function RegisterForm({register}) {
 
             console.debug("RegisterForm", formData);
             await register(formData);
-            navigate("/");
+            setIsRegister(true);
+
+            setTimeout(() => { navigate("/") }, 2000)
 
         } catch (err) {
             setFormErrors(err);
@@ -40,6 +43,9 @@ function RegisterForm({register}) {
         <div className="RegisterForm">
             <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                 <h3 className="mb-3">Register</h3>
+                {
+                    isRegister ? <Alert type="success" messages={["Successfully Register"]} /> : null
+                }
                 <div className="card">
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>
@@ -99,7 +105,6 @@ function RegisterForm({register}) {
                             {
                                 formErrors.length ? <Alert type="danger" messages={formErrors} /> : null
                             }
-
                             <div className="d-grid">
                                 <button className="btn btn-primary">Submit</button>
                             </div>

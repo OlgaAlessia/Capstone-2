@@ -3,21 +3,25 @@ import { useNavigate } from "react-router-dom";
 import Alert from "../helpers/Alert";
 import "./LoginForm.css";
 
-function LoginForm({login}) {
+function LoginForm({ login }) {
 
     const INITIAL_STATE = { username: "", password: "" };
     const [formData, setFormData] = useState(INITIAL_STATE);
     const [formErrors, setFormErrors] = useState([]);
+    const [isLogin, setIsLogin] = useState(false);
     const navigate = useNavigate();
 
-    //console.debug("LoginForm");
 
     async function handleSubmit(evt) {
 
         evt.preventDefault();
         try {
             await login(formData);
-            navigate("/");
+
+            setIsLogin(true);
+
+            setTimeout(() => { navigate("/") }, 2000);
+
             setFormData(INITIAL_STATE);
         } catch (err) {
             setFormErrors(err);
@@ -37,6 +41,9 @@ function LoginForm({login}) {
         <div className="LoginForm">
             <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                 <h3 className="mb-3">Log In</h3>
+                {
+                    isLogin ? <Alert type="success" messages={["Successfully Login"]} /> : null
+                }
                 <div className="card">
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>

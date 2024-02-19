@@ -17,3 +17,4 @@ CREATE DATABASE lego_test;
 \connect lego_test
 
 \i lego-schema.sql
+\i lego-seed.sql

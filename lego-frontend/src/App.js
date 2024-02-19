@@ -19,7 +19,7 @@ function App() {
 
     useEffect(
         function loadUserInfo() {
-            console.debug("App useEffect loadUserInfo", "token: ", token);
+            //console.debug("App useEffect loadUserInfo", "token: ", token);
 
             async function getCurrentUser() {
                 if (token) {
@@ -34,6 +34,7 @@ function App() {
                             infoLoaded: true,
                             userInfo: currentUser
                         });
+
                     } catch (err) {
                         console.error("App loadUserInfo: problem loading", err);
                         setCurrentUser({
