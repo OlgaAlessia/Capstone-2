@@ -3,6 +3,15 @@ import { useLocation } from "react-router-dom";
 import LegoSet from "./LegoSet"
 import "./Lego.css";
 
+/** LegoList page.
+ *
+ * Show the Lego Sets that are inside the list (:list_id) that the currentUser has click.
+ *
+ * Routed at /legolists/:list_id
+ *
+ * Routes -> LegoList
+ */
+
 const LegoList = () => {
     let location = useLocation();
     const { lists } = location.state;

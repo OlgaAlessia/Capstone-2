@@ -12,6 +12,21 @@ The idea was to create a simple application in one week that helps the user find
 Also, the user can add a list in their favorite list to easily access and see that later. 
 
 
+## The app features are:
+- Create an account to search and see 
+- Search lego sets by name and by setNumber
+- Saved new list
+- See all the information about the Lego Sets
+- See the Moc instuction for a lego set
+- Modify the password 
+
+
+## To-do list:
+* Delete the list created
+* Add lego parts 
+* Add more features
+
+
 ## Style
 
 The background photo is by <a href="https://unsplash.com/@jamesamolnar?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">James A. Molnar</a> on <a href="https://unsplash.com/photos/yellow-green-blue-and-red-lego-blocks-R8t7MjLXy2s?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>

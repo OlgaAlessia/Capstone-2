@@ -1,8 +1,14 @@
 import React from "react";
 import "./Lego.css";
 
-const LegoAlterates = ({ alterate }) => {
+/** LegoAlterates .
+ *
+ * Show the information of the the alternative MOC Lego Sets 
+ * that is pass.
+ *
+ */
 
+const LegoAlterates = ({ alterate }) => {
 
     return (
         <div className="LegoAlterates-col col-xs-6 col-sm-4 col-md-3 col-lg-2" key={alterate.set_num}>

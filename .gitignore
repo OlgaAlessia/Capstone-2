@@ -1,9 +1,11 @@
 # dependencies
 lego-frontend/node_modules
 lego-backend/node_modules
-
+lego-frontend/src/__snapshots__
 
 # misc
 .env
 lego-backend/.env
+
+
 

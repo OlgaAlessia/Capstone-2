@@ -3,7 +3,15 @@ import { useNavigate } from "react-router-dom";
 import Alert from "../helpers/Alert";
 import "./RegisterForm.css";
 
-
+/** Register form.
+ *
+ * Shows form and manages update to state on changes.
+ * On submission:
+ * - calls register function prop
+ * - redirects to / route
+ *
+ * Routed as /register
+ */
 function RegisterForm({ register }) {
 
     const INITIAL_STATE = { username: "", password: "", firstName: "", lastName: "", email: "" };

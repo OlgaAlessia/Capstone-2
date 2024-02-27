@@ -121,7 +121,7 @@ describe("get", function () {
       lastName: "U1L",
       email: "u1@email.com",
       bio: null,
-      photo_url: "../default-pic.png",
+      photoUrl: "../default-pic.png",
       isAdmin: false
     });
   });

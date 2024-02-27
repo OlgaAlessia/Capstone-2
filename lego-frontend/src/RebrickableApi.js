@@ -1,8 +1,11 @@
 
 const REBRICKABLE_URL = 'https://rebrickable.com/api/v3'
 
-const REBRICKABLE_KEY = process.env.REBRICKABLE_KEY;
-const USER_LEGO_TOKEN = process.env.USER_LEGO_TOKEN;
+const REBRICKABLE_KEY = process.env.REBRICKABLE_KEY || "d90a825f8631ce333f868fbc315954c1";
+const USER_LEGO_TOKEN = process.env.USER_LEGO_TOKEN || "b058361a62196602651a9443e0f9866fe702e365b33ff34996cf51f1f6a236d7";
+
+/** RebrickableApi Class.
+ */
 
 class RebrickableApi {
 

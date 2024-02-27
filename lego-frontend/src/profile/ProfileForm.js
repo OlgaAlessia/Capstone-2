@@ -4,23 +4,47 @@ import UserContext from "../UserContext";
 import LegoApi from "../LegoApi"
 import { useNavigate } from "react-router-dom";
 
+/** Profile editing form.
+ *
+ * Displays profile form and handles changes to local form state.
+ * Submitting the form calls the API to save, and triggers user reloading
+ * throughout the site.
+ *
+ * Confirmation of a successful save and show with <Alert>
+ *
+ * Routed as /edit_profile
+ * Routes -> ProfileForm
+ */
+
 function ProfileForm() {
 
-    const { currentUser, setCurrentUser } = useContext(UserContext);
     const navigate = useNavigate();
+
+    const {currentUser, setCurrentUser} = useContext(UserContext);
 
     const [formData, setFormData] = useState({
         username: currentUser.username,
         firstName: currentUser.firstName,
         lastName: currentUser.lastName,
         email: currentUser.email,
+        photoUrl: currentUser.photoUrl,
         bio: currentUser.bio
     });
-    const [formErrors, setFormErrors] = useState([]);
-    const [isUpdated, setIsUpdated] = useState(false);
 
+    const [formErrors, setFormErrors] = useState([]);
+    const [updatedConfirmed, setUpdatedConfirmed] = useState(false);
+
+    /** handleSubmit:
+     * - Save profile user data to backend & report any errors
+     * - if successful
+     *   - clear previous error messages
+     *   - show save-confirmed message
+     *   - set current user info throughout the site
+     */
     async function handleSubmit(evt) {
         evt.preventDefault();
+
+        console.debug(currentUser);
 
         if (!formData.bio) formData.bio = ""
 
@@ -28,12 +52,15 @@ function ProfileForm() {
             firstName: formData.firstName,
             lastName: formData.lastName,
             email: formData.email,
+            photoUrl: formData.photoUrl,
             bio: formData.bio
         }
 
+        let username = formData.username;
         let updatedUserData;
+
         try {
-            updatedUserData = await LegoApi.saveProfile(formData.username, userData);
+            updatedUserData = await LegoApi.saveProfile(username, userData);
         } catch (err) {
             setFormErrors(err);
             return;
@@ -41,8 +68,9 @@ function ProfileForm() {
 
         setFormData(fData => ({ ...fData }));
         setFormErrors([]);
-        setIsUpdated(true);
+        setUpdatedConfirmed(true);
 
+        // trigger reloading of user information throughout the site
         setCurrentUser(currentUser => ({ ...currentUser, data: updatedUserData }));
 
         setTimeout(() => { navigate("/profile") }, 2000);
@@ -63,7 +91,7 @@ function ProfileForm() {
             <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
                 <h3 className="mb-3">Profile</h3>
                 {
-                    isUpdated ? <Alert type="success" messages={["Updated successfully"]} /> : null
+                    updatedConfirmed ? <Alert type="success" messages={["Updated successfully"]} /> : null
                 }
                 <div className="card">
                     <div className="card-body">
@@ -106,11 +134,20 @@ function ProfileForm() {
                                 />
                             </div>
                             <div className="mb-3">
+                                <label htmlFor="form-label">Url Photo</label>
+                                <input name="photoUrl"
+                                    id="photoUrl"
+                                    className="form-control"
+                                    value={formData.photoUrl == null ? '' : formData.photoUrl}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="mb-3">
                                 <label htmlFor="form-label">Bio</label>
                                 <textarea name="bio"
                                     id="bio"
                                     className="form-control"
-                                    value={formData.bio}
+                                    value={formData.bio == null ? '' : formData.bio}
                                     onChange={handleChange}
                                     rows="4"
                                 />

@@ -54,13 +54,13 @@ class LegoApi {
     return res.token;
   }
 
-  /** Signup 
+  /** Register 
    * 
    * POST /auth/register:   { user } => { token }
    * user must include { username, password, firstName, lastName, email }
   */
 
-  static async signup(data) {
+  static async register(data) {
     let res = await this.request('auth/register', data, "post");
     return res.token;
   }

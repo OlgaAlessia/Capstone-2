@@ -3,6 +3,17 @@ import LegoApi from "../LegoApi"
 import LegoSet from "./LegoSet";
 import SearchForm from "../helpers/SearchForm";
 
+
+/** LegoSetSearch page.
+ *
+ * On mount, loads the legoSet from LegoAPI.
+ * Re-loads filtered legoSet on submit from the search forms.
+ *
+ * This is routed to at /legosetsearch
+ *
+ * Routes -> LegoSetSearch
+ */
+
 import "./Lego.css";
 
 function LegoSetSearch() {

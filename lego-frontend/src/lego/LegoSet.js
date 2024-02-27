@@ -4,6 +4,11 @@ import UserContext from "../UserContext"
 import LegoApi from "../LegoApi"
 import "./Lego.css";
 
+/** LegoSet page.
+ *
+ * Renders information about the LegoSet.
+ *
+ */
 
 const LegoSet = ({ set }) => {
     const { currentUser } = useContext(UserContext);
@@ -22,17 +27,14 @@ const LegoSet = ({ set }) => {
     }, [myListSetsNums, set]);
 
     async function addToList() {
-
         await LegoApi.addSetToList(3, set.set_num).then(res => {
             setIsOnMyList(true);
             setIsAdded(true);
-
             setTimeout(() => { setIsAdded(false); }, 2000);
         }).catch(err => {
             setFormErrors(err);
             setTimeout(() => { setFormErrors([]); }, 2000);
         });
-        //LegoApi.addSetToList(list_id, setNum).then(() => setIsOnMyList(true));
     };
 
     return (

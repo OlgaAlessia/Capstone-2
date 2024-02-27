@@ -6,6 +6,15 @@ import LegoAlterates from "./LegoAlterates"
 
 import "./Lego.css";
 
+/** LegoSet Detail page.
+ *
+ * Renders information about the LegoSet, along with Moc for that legoSet.
+ *
+ * Routed at /legosets/:set_num
+ *
+ * Routes -> LegoSetDetails
+ */
+
 function LegoSetDetails() {
     const { set_num } = useParams();
 
@@ -39,7 +48,7 @@ function LegoSetDetails() {
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-9 col-sm-9">
+                <div className="col-md-9 col-sm-7">
                     <img className="LegoSetDetails-img" title={title}
                         alt={title}
                         src={legoSet.set_img_url}
@@ -64,14 +73,15 @@ function LegoSetDetails() {
                     </table>
                 </div>
             </div>
-            {legoAlterates.length!=0 && (
-            <div className="row LegoAlterates-row">
-                <h3 className="LegoAlterates-title">Alternate Builds (MOCs)</h3>
-                {legoAlterates.map(moc => (
-                    <LegoAlterates
-                        alterate={moc}
-                    />))}
-            </div>
+            {legoAlterates.length !== 0 && (
+                <div className="row LegoAlterates-row">
+                    <h3 className="LegoAlterates-title">Alternate Builds (MOCs)</h3>
+                    {legoAlterates.map(moc => (
+                        <LegoAlterates
+                            key={moc.set_num}
+                            alterate={moc}
+                        />))}
+                </div>
             )}
         </section>
     )

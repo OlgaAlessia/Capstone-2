@@ -29,7 +29,7 @@ function App() {
                         // put the token on the Api class so it can use it to call the API.
                         LegoApi.token = token;
                         const currentUser = await LegoApi.getCurrentUser(username);
-                        console.debug("currentUser: ", currentUser);
+                        
                         setCurrentUser({
                             infoLoaded: true,
                             userInfo: currentUser
@@ -60,9 +60,9 @@ function App() {
         setToken(token);
     }
 
-    /** Handles signup */
-    async function signup(loginData) {
-        let token = await LegoApi.signup(loginData);
+    /** Handles register */
+    async function register(loginData) {
+        let token = await LegoApi.register(loginData);
         setToken(token);
     }
 
@@ -78,16 +78,11 @@ function App() {
     if (!currentUser.infoLoaded) return (<div> Loading ... </div>);
 
     return (
-        <UserContext.Provider
-            value={{
-                currentUser: currentUser.userInfo,
-                setCurrentUser
-            }}
-        >
+        <UserContext.Provider value={{ currentUser: currentUser.userInfo, setCurrentUser }}>
             <div className="App">
                 <BrowserRouter>
                     <NavBar logout={logout} />
-                    <RoutesList login={login} signup={signup} currentUser={currentUser.data} />
+                    <RoutesList login={login} register={register} currentUser={currentUser.data} />
                 </BrowserRouter>
             </div>
         </UserContext.Provider >

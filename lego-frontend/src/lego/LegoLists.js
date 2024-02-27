@@ -6,6 +6,14 @@ import LegoApi from "../LegoApi"
 import { Link } from "react-router-dom";
 import "./Lego.css";
 
+/** LegoLists page.
+ *
+ * On mount, loads from LegoAPI the list that the currentUser has .
+ *
+ * Routed at /legolists
+ *
+ * Routes -> LegoLists
+ */
 function LegoLists() {
     const [myLists, setMyLists] = useState([]);
     const { currentUser } = useContext(UserContext);
@@ -14,7 +22,7 @@ function LegoLists() {
 
     useEffect(() => {
         LegoApi.getListByUser(currentUser.id).then((result) => setMyLists(result.lists));
-    }, []);
+    }, [currentUser.id]);
 
 
     /** Handles addListSet 

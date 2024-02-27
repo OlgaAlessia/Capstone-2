@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import Alert from "../helpers/Alert";
 
 /** Add tool.
  *
- * This component is used in LegoLists
- **/
+ * Appears on LegoLists so that a Lego List name can be down.
+ *
+ * This component doesn't *do* the addin, the parent does the actions.
+ *
+ */
 
 function AddForm({ addListName }) {
   const [listName, setListName] = useState("");

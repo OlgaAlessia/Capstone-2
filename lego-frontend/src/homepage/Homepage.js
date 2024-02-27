@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from 'react-router-dom'
 import "./Homepage.css";
-import UserContext from "./UserContext"
+import UserContext from "../UserContext"
 
-
+/** Homepage of site.
+ *
+ * Shows welcome message and Search Lego Set/Lists buttons or login/register buttons.
+ *
+ * Routed at /  -> Homepage
+ */
 function Homepage() {
   const { currentUser } = useContext(UserContext);
 
@@ -28,7 +33,7 @@ function Homepage() {
 
               <p>
                 <Link className="btn btn-primary fw-bold me-3" to="/login">Log in</Link>
-                <Link className="btn btn-primary fw-bold" to="/signup">Sign up</Link>
+                <Link className="btn btn-primary fw-bold" to="/register">Register</Link>
               </p>
             )
         }

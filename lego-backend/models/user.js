@@ -98,7 +98,7 @@ class User {
 
   /** Given a username, return data about user.
    *
-   * Returns { id, username, first_name, last_name, photo_url, bio, is_admin }
+   * Returns { id, username, firstName, lastName, photoUrl, bio, is_admin }
    *
    * Throws NotFoundError if user not found.
    **/
@@ -110,7 +110,7 @@ class User {
               first_name AS "firstName",
               last_name AS "lastName",
               email,
-              photo_url,
+              photo_url AS "photoUrl",
               bio,
               is_admin AS "isAdmin"
       FROM users
@@ -126,7 +126,7 @@ class User {
 
   /** Update user data with `data`.
    *
-   * Data can include: { firstName, lastName, password, email, bio, isAdmin }
+   * Data can include: { firstName, lastName, password, email, photoUrl, bio, isAdmin }
    *
    * Returns { username, firstName, lastName, email, isAdmin }
    *
@@ -143,6 +143,7 @@ class User {
       {
         firstName: "first_name",
         lastName: "last_name",
+        photoUrl: "photo_url",
         isAdmin: "is_admin",
       });
     const usernameVarIdx = "$" + (values.length + 1);
@@ -150,10 +151,12 @@ class User {
     const querySql = `UPDATE users 
                       SET ${setCols} 
                       WHERE username = ${usernameVarIdx} 
-                      RETURNING username,
+                      RETURNING id,
+                                username,
                                 first_name AS "firstName",
                                 last_name AS "lastName",
                                 email,
+                                photo_url AS "photoUrl",
                                 bio,
                                 is_admin AS "isAdmin"`;
     const result = await db.query(querySql, [...values, username]);

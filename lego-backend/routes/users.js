@@ -66,7 +66,7 @@ router.get("/", ensureAdmin, async function (req, res, next) {
 
 /** GET /[username] => { user }
  *
- * Returns { username, firstName, lastName, email, photo_url, bio, isAdmin}
+ * Returns { username, firstName, lastName, email, photoUrl, bio, isAdmin}
  *
  * Authorization required: login
  **/
@@ -84,9 +84,9 @@ router.get("/:username", ensureCorrectUserOrAdmin, async function (req, res, nex
 
 /** PATCH /[username] { user } => { user }
  *
- * Data can include: { firstName, lastName, password, email, photo_url, bio }
+ * Data can include: { firstName, lastName, password, email, photoUrl, bio }
  *
- * Returns { username, firstName, lastName, email, photo_url, bio, isAdmin }
+ * Returns { username, firstName, lastName, email, photoUrl, bio, isAdmin }
  *
  * Authorization required: login
  **/

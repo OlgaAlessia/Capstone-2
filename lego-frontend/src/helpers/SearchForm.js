@@ -2,8 +2,12 @@ import React, { useState } from "react";
 
 /** Search tool.
  *
- * This component is used in LegoSetSearch
- **/
+ * Appears on LegoSetSearch so that a Lego Set can be filtered down.
+ *
+ * This component doesn't *do* the searching, the parent to do the searching.
+ *
+ */
+
 
 function SearchForm({ searchValue, term }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -36,7 +40,7 @@ function SearchForm({ searchValue, term }) {
             />
           </div>
           <div className="col-auto">
-            <button type="submit" className="btn btn-md btn-success">
+            <button type="submit" className="btn btn-md">
               Submit
             </button>
           </div>

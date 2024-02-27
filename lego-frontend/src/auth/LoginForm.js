@@ -3,6 +3,16 @@ import { useNavigate } from "react-router-dom";
 import Alert from "../helpers/Alert";
 import "./LoginForm.css";
 
+/** Login form.
+ *
+ * Shows form and manages update to state on changes.
+ * On submission:
+ * - calls login function prop
+ * - redirects to / route
+ *
+ * Routed as /login
+ */
+
 function LoginForm({ login }) {
 
     const INITIAL_STATE = { username: "", password: "" };
@@ -34,8 +44,6 @@ function LoginForm({ login }) {
         const { name, value } = evt.target;
         setFormData(fData => ({ ...fData, [name]: value }));
     };
-
-
 
     return (
         <div className="LoginForm">
