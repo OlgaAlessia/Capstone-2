@@ -2,6 +2,7 @@
 lego-frontend/node_modules
 lego-backend/node_modules
 lego-frontend/src/__snapshots__
+lego-frontend/src/helpers/__snapshots__
 
 # misc
 .env
