@@ -1,24 +1,22 @@
 "use strict";
-/** Database setup for jobly. */
-const { Client } = require("pg");
+/** Database setup for lego. */
+const { Pool, Client } = require("pg");
 const { getDatabaseUri } = require("./config");
 
 let db;
 
 if (process.env.NODE_ENV === "production") {
-  db = new Client({
-    host: "/var/run/postgresql/",
-    database: getDatabaseUri(),
-    ssl: {
-      rejectUnauthorized: false
-    }
-  });
+
+  const databaseConfig = { connectionString: process.env.CONNECTION_STRING };
+  db = new Pool(databaseConfig);
+
 } else {
   db = new Client({
     host: "/var/run/postgresql/",
     database: getDatabaseUri()
   });
 }
+
 
 db.connect();
 

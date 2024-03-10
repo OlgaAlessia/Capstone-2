@@ -86,7 +86,7 @@ describe("getListSetsByUser", function () {
 
   test("not found if no such user", async function () {
     try {
-      const val = await List.getListSetsByUser(40);
+      await List.getListSetsByUser(40);
       fail();
     } catch (err) {
       expect(err instanceof NotFoundError).toBeTruthy();

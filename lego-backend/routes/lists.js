@@ -36,7 +36,7 @@ router.post("/", ensureLoggedIn, async function (req, res, next) {
 
 
 /** GET /  =>
- *   { set: [ {  }, ...] }
+ *   { list: [ {  }, ...] }
  *
  * Authorization required: none
  */
@@ -75,7 +75,7 @@ router.get("/:user_id", async function (req, res, next) {
 
 router.delete("/:id", ensureCorrectUserOrAdmin, async function (req, res, next) {
     try {
-        await List.remove(req.params.id);
+        await List.removeList(req.params.id);
         return res.json({ deleted: req.params.id });
     } catch (err) {
         return next(err);

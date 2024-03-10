@@ -17,6 +17,8 @@
     "jwt-decode": "^4.0.0",
     "morgan": "^1.10.0",
     "pg": "^8.11.3",
+    "pg-pool": "^3.6.1",
+    "pg-promise": "^11.5.4",
     "supertest": "^6.3.4",
     "web-vitals": "^2.1.4"
   },

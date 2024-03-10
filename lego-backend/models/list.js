@@ -56,9 +56,8 @@ class List {
         return listLegoSet;
     }
 
-    /** Given a list name and user id, return the list of lego set.
-     *
-     * Returns { lego_sets_num }
+    /**
+     * Returns { list_sets }
      *
      * Throws NotFoundError if not found.
      **/
@@ -106,12 +105,12 @@ class List {
     }
 
 
-    /** Delete given job from database; returns undefined.
+    /** Delete given list id from database; returns undefined.
     *
-    * Throws NotFoundError if company not found.
+    * Throws NotFoundError if list is not found.
     **/
 
-    static async removeListSets(id) {
+    static async removeList(id) {
         const result = await db.query(
             `DELETE FROM list_sets
             WHERE id = $1 
