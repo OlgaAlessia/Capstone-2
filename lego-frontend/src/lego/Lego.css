@@ -1,3 +1,37 @@
+/**** AddToList ****/
+
+.AddToList .formList{
+  margin: 1rem;
+  text-align: left;
+  background-color: white;
+  color: black;
+  padding-bottom: 1.5rem;
+}
+
+
+.AddToList .formList-btn{
+  display: flex;
+  justify-content: space-around;
+
+}
+
+
+.AddToList .formList .form-check{
+  margin: 10px 0;
+  background-color: white;
+  color: black;
+  font-size: 1.5rem;
+}
+
+.AddToList .formList .form-check .label{
+  font-size: 400px;
+}
+
+
+.AddToList .form-check-input:checked {
+  background-color: #fdd90d;
+  border-color: #fdf50d;
+}
 
 /**** LegoAlterates ****/
 
@@ -56,6 +90,10 @@
   align-items: center;
 }
 
+.LegoLists-list h4{
+  margin-top: 0.5rem;
+}
+
 .LegoLists-list a {
   display: flex;
   justify-content: space-between;
@@ -67,6 +105,11 @@
   margin: 1rem 0;
 }
 
+.LegoLists-list :hover {
+color: white;
+  background-color: #182f41;
+}
+
 .LegoLists-name {
   margin-left: 2rem;
 }
@@ -76,9 +119,9 @@
 }
 
 .LegoLists .btn {
-    color: #fff;
-    background-color: #2c5777;
-    border-color: #2c5777;
+  color: #fff;
+  background-color: #2c5777;
+  border-color: #2c5777;
 }
 
 .LegoLists .btn:active {
@@ -89,6 +132,32 @@
 .LegoLists .btn:hover {
   background-color: #154473;
   border-color: #144a6c;
+}
+
+/**** LegoList ****/
+
+.row-button{
+  display: flex;
+  justify-content: space-between;
+}
+
+.remove-button{
+  color: white;
+  background-color: #860202;
+}
+
+.remove-button:hover{
+  background-color: #520000;
+}
+
+
+.goBack{
+  color: red;
+  text-decoration: none;
+}
+
+.goBack:hover{
+  color: #860202;
 }
 
 
@@ -121,11 +190,27 @@
 }
 
 
+/**** LegoSets ****/
+
+.LegoSets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  list-style-type: none;
+}
+
+
 
 /**** LegoSetDetails ****/
 
 .LegoSetDetails {
   color: black;
+}
+
+.LegoSetDetails h2{
+  color: white;
 }
 
 .LegoSetDetails-img {
@@ -136,31 +221,47 @@
 
 /**** LegoSetSearch ****/
 
-.LegoSetSearch-sets,
-.LegoList {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 1rem;
-  grid-row-gap: 1rem;
-  list-style-type: none;
+.LegoSetSearch .addTolist-button {
+    color: #198754 !important;
+    background-color: lightgrey !important;
 }
 
-.LegoSetSearch-sets .LegoSet {
-  box-shadow: rgba(61, 124, 70, 0.603) 0px 5px 15px;
+.LegoSetSearch .addTolist-button:hover {
+  color: lightgrey !important;
+  background-color: #198754 !important;
 }
+
+
 
 .LegoSetSearch-sets {
   padding-top: 2rem;
 }
 
-.LegoSetSearch .LegoSetSearch-sets a {
+.LegoSetSearch .LegoSet a {
   color: #198754;
 }
 
-.LegoSetSearch .LegoSetSearch-sets a:hover {
+.LegoSetSearch .LegoSet a:hover {
   color: #157347;
 }
+
+.LegoSetSearch .btn {
+  color: #fff;
+  background-color: #198754;
+  border-color: #198754;
+}
+
+.LegoSetSearch .btn:hover {
+  background-color: #157347;
+  border-color: #146c43;
+}
+
+.LegoSetSearch .btn:active {
+  background-color: #146c43;
+  border-color: #13653f;
+}
+
+
 
 
 @media (max-width: 700px) {

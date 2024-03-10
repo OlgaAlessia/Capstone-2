@@ -4,7 +4,7 @@ import { MemoryRouter } from "react-router";
 import Homepage from "./Homepage";
 import { UserProvider } from "../testUtils";
 
-
+// smoke test
 it("matches snapshot", function () {
   const { asFragment } = render(
       <MemoryRouter>

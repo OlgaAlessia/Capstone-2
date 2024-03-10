@@ -1,8 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import SearchForm from "./SearchForm";
+import AddForm from "./AddForm";
 
+// snapshot test
 it("matches snapshot", function () {
-  const { asFragment } = render(<SearchForm />);
+  const { asFragment } = render(<AddForm />);
   expect(asFragment()).toMatchSnapshot();
 });

@@ -17,7 +17,7 @@ import "./Lego.css";
 function LegoLists() {
     const [myLists, setMyLists] = useState([]);
     const { currentUser } = useContext(UserContext);
-    const [formErrors, setFormErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
     const [isAdded, setIsAdded] = useState(false);
 
     useEffect(() => {
@@ -41,29 +41,28 @@ function LegoLists() {
 
             setTimeout(() => { setIsAdded(false); }, 2000);
         }).catch(err => {
-            setFormErrors(err);
-            setTimeout(() => { setFormErrors([]); }, 2000);
+            setErrors(err);
+            setTimeout(() => { setErrors([]); }, 2000);
         })
-
     }
 
-    if (!myLists) return (<div> Loading ... </div>);
+    if (!myLists) return (<h2 className="loading"> Loading ... </h2>);
 
     return (
-        <div className="LegoLists col-md-8 offset-md-2">
+        <div className="LegoLists ">
             <br />
             <AddForm key="byName" addListName={addListSet} term="name" />
             {
                 isAdded ? <Alert type="success" messages={["List Added successfully"]} /> : null
             }
             {
-                formErrors.length ? <Alert type="danger" messages={formErrors} /> : null
+                errors.length ? <Alert type="danger" messages={errors} /> : null
             }
             {myLists.length ?
                 (<div className="LegoLists-list" >
                     {myLists.map(l => (
                         <Link to={`${l.id}/`}
-                            state={{ lists: l.json_agg }}
+                            state={{ lists: l.json_agg, id: l.id, name: l.name }}
                             key={l.id}
                         >
                             <h4 className="LegoLists-name">{l.name}</h4>
@@ -77,7 +76,7 @@ function LegoLists() {
                     ))}
                 </div>
                 ) : (
-                    <p>Sorry, no lists were found!</p>
+                    <h2 className="notFound">Sorry, no lists were found!</h2>
                 )}
         </div>
     )

@@ -1,7 +1,7 @@
 import axios from "axios";
 import RebrickableApi from "./RebrickableApi"
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'http://localhost:3001'; //process.env.REACT_APP_BASE_URL || 
 
 
 /** API Class.
@@ -18,7 +18,7 @@ class LegoApi {
 
 
   static async request(endpoint, paramsOrData = {}, method = "get") {
-    console.debug("API Call:", endpoint, paramsOrData, method);
+    //console.debug("API Call:", endpoint, paramsOrData, method);
 
     //there are multiple ways to pass an authorization token, this is how you pass it in the header.
     //this has been provided to show you another way to pass the token. you are only expected to read this code for this project.
@@ -145,11 +145,16 @@ class LegoApi {
 
   }
 
- /** Add a Lego Set to a list with the list_id and set_num. */
+  static async deleteList(id) {
+    return await this.request(`lists/${id}`, {}, "delete");
+  }
 
-  static async addSetToList(list_id, sets_num) {
 
-    let res = await this.getLegoSet(sets_num);
+  /** Add a Lego Set to a list with the list_id and set_num. */
+
+  static async addSetToList(list_id, set_num) {
+
+    let res = await this.getLegoSet(set_num);
     const data = {
       set_num: res.set_num,
       name: res.name,
@@ -161,7 +166,7 @@ class LegoApi {
 
     await this.createSet(data);
 
-    return await this.request(`lists/${list_id}/set/${sets_num}`, {}, "post");
+    return await this.request(`lists/${list_id}/set/${set_num}`, {}, "post");
   }
 
 }

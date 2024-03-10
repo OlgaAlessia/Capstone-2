@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
   overflow-x: hidden;
-  color: black;
+  color: white;
 
   background: url("../public/background.jpg");
   background-attachment: fixed;
@@ -19,4 +19,52 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+/* ======= 404 page ======= */
+
+body.error-404 {
+  background-color: #D3D3D3;
+}
+
+.pageNotFound {
+  color: white;
+  margin-top: 4em;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageNotFound h1 {
+  color: #e7ebf2;
+  font-size: 12.5rem;
+  letter-spacing: .10em;
+  margin: .025em 0;
+  text-shadow: .05em .05em 0 rgba(0,0,0,.25);
+  white-space: nowrap;
+}
+
+.pageNotFound h1 > span {
+  animation: bounce 2s alternate infinite linear;
+  color: #E6CEA0;
+  display: inline-block;
+}
+
+.pageNotFound h2, .notFound h2, .loading h2 {
+  color: #e7ebf2;
+  margin-bottom: .40em;
+}
+
+.pageNotFound p {
+  margin-top: 0;
+}
+
+
+.pageNotFound > h4.display-4 {
+  font-size: 2.5em;
+}
+
+.pageNotFound .form-inline input {
+  flex: 1;
 }

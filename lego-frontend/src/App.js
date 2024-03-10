@@ -5,8 +5,8 @@ import { jwtDecode } from "jwt-decode";
 import LegoApi from "./LegoApi"
 import UserContext from "./UserContext";
 import { BrowserRouter } from "react-router-dom";
-import NavBar from "./NavBar";
-import RoutesList from "./RoutesList";
+import NavBar from "./routes-nav/NavBar";
+import RoutesList from "./routes-nav/RoutesList";
 
 import './App.css';
 
@@ -75,7 +75,7 @@ function App() {
         setToken(null);
     }
 
-    if (!currentUser.infoLoaded) return (<div> Loading ... </div>);
+    if (!currentUser.infoLoaded) return (<div className="App"><h2 className="loading"> Loading ... </h2></div>);
 
     return (
         <UserContext.Provider value={{ currentUser: currentUser.userInfo, setCurrentUser }}>

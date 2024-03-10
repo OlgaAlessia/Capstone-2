@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LegoApi from "../LegoApi"
-import LegoSet from "./LegoSet";
+import LegoSets from "./LegoSets";
 import SearchForm from "../helpers/SearchForm";
 
 
@@ -42,7 +42,7 @@ function LegoSetSearch() {
             setLegoSets([legoSets]);
     }
 
-    if (!legoSets) return (<div> Loading ... </div>);
+    if (!legoSets) return (<h2 className="loading"> Loading ... </h2>);
 
     return (
         <div className="LegoSetSearch">
@@ -50,19 +50,9 @@ function LegoSetSearch() {
             <SearchForm key="byName" searchValue={searchByName} term="name" />
             <br />
             <SearchForm key="byNum" searchValue={searchByNum} term="lego set number" />
-
-            {legoSets.length
-                ? (
-                    <div className="LegoSetSearch-sets" >
-                        {legoSets.map((set) =>
-                            <LegoSet
-                                key={set.set_num}
-                                set={set}
-                            />)}
-                    </div>
-                ) : (
-                    <p>Sorry, no results were found!</p>
-                )}
+            <br />
+            <LegoSets legoSets={legoSets} />
+           
         </div>
     );
 };

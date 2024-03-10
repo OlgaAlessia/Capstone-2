@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import "./NavBar.css";
+
 import { NavLink } from "react-router-dom";
 import { Navbar } from "reactstrap";
 import UserContext from "../UserContext"
-
+import "./NavBar.css";
 
 /** Navigation bar for site. Shows up on every page.
  *
