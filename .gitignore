@@ -4,9 +4,10 @@ lego-backend/node_modules
 lego-frontend/src/__snapshots__
 lego-frontend/src/helpers/__snapshots__
 
+lego-frontend/src/auth/__snapshots__/
+lego-frontend/src/homepage/__snapshots__/
+lego-frontend/src/profile/__snapshots__/
+
 # misc
 .env
 lego-backend/.env
-
-
-

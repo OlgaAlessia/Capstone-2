@@ -34,8 +34,8 @@ function RoutesList({ login, register }) {
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route path="/edit_profile" element={<ProfileForm />} />
-        <Route path="/legolists/:list_id" element={<LegoList />} />
         <Route path="/legolists" element={<LegoLists />} />
+        <Route path="/legolists/:list_id" element={<LegoList />} />
         <Route path="/legosets" element={<LegoSets />} />
         <Route path="/legosets/:set_num" element={<LegoSetDetails />} />
         <Route path="/legosetsearch" element={<LegoSetSearch />} />
