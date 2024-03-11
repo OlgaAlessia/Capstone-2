@@ -29,7 +29,7 @@ CREATE TABLE lego_sets (
 -- Table: lists_sets
 CREATE TABLE list_sets (
     id SERIAL PRIMARY KEY,
-    name TEXT UNIQUE NOT NULL,
+    name TEXT NOT NULL,
     user_id INTEGER NOT NULL 
         REFERENCES users (id) ON DELETE CASCADE
 );
