@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserContext from "../UserContext"
-import AddForm from "../helpers/AddForm";
-import Alert from "../helpers/Alert";
+import AddForm from "../common/AddForm";
+import Alert from "../common/Alert";
 import LegoApi from "../LegoApi"
 import { Link } from "react-router-dom";
 import "./Lego.css";
@@ -16,14 +16,18 @@ import "./Lego.css";
  */
 function LegoLists() {
     const [myLists, setMyLists] = useState([]);
-    const { currentUser } = useContext(UserContext);
+    const { currentUser, setCurrentUser } = useContext(UserContext);
     const [errors, setErrors] = useState([]);
     const [isAdded, setIsAdded] = useState(false);
 
     useEffect(() => {
-        LegoApi.getListByUser(currentUser.id).then((result) => setMyLists(result.lists));
-    }, [currentUser.id]);
 
+        if (currentUser.lists.length === 0) {
+            setMyLists([]);
+        } else {
+            LegoApi.getListByUser(currentUser.id).then((result) => setMyLists(result.lists));
+        }
+    }, [currentUser]);
 
     /** Handles addListSet 
      * json_agg and num_sets are set to null and 0
@@ -31,19 +35,27 @@ function LegoLists() {
     */
     async function addListSet(nameList) {
 
-        await LegoApi.createListSet(nameList, currentUser.id).then(listSets => {
+        await LegoApi.createListSet(nameList, currentUser.id).then(async listSets => {
 
             listSets.set.json_agg = null;
             listSets.set.num_sets = "0"
             setMyLists([...myLists, listSets.set]);
-
             setIsAdded(true);
-
-            setTimeout(() => { setIsAdded(false); }, 2000);
+            
         }).catch(err => {
             setErrors(err);
             setTimeout(() => { setErrors([]); }, 2000);
         })
+
+        await LegoApi.getCurrentUser(currentUser.username).then(userInfo => {
+            setCurrentUser([...currentUser], userInfo)
+        }).catch(err => {
+            setErrors(err);
+            setTimeout(() => { setErrors([]); }, 2000);
+        })
+
+        setTimeout(() => { setIsAdded(false); }, 2000);
+
     }
 
     if (!myLists) return (<h2 className="loading"> Loading ... </h2>);
@@ -76,11 +88,10 @@ function LegoLists() {
                     ))}
                 </div>
                 ) : (
-                    <h2 className="notFound">Sorry, no lists were found!</h2>
+                    <h2 className="notFound">Sorry, no lists were found! Create one.</h2>
                 )}
         </div>
     )
 };
 
 export default LegoLists;
-

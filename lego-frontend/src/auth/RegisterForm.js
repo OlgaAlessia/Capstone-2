@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Alert from "../helpers/Alert";
+import {Icon} from 'react-icons-kit';
+import {eyeOff} from 'react-icons-kit/feather/eyeOff';
+import {eye} from 'react-icons-kit/feather/eye'
+import Alert from "../common/Alert";
 import "./RegisterForm.css";
 
 /** Register form.
@@ -15,30 +18,36 @@ import "./RegisterForm.css";
 function RegisterForm({ register }) {
 
     const INITIAL_STATE = { username: "", password: "", firstName: "", lastName: "", email: "" };
+    const navigate = useNavigate();
     const [formData, setFormData] = useState(INITIAL_STATE);
     const [formErrors, setFormErrors] = useState([]);
     const [isRegister, setIsRegister] = useState(false);
-    const navigate = useNavigate();
+    const [type, setType] = useState('password');
+    const [icon, setIcon] = useState(eyeOff);
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-        try {
-
-            console.debug("RegisterForm", formData);
-            await register(formData);
+        let result = await register(formData);
+        if (result.success) {
             setIsRegister(true);
-
-            setTimeout(() => { navigate("/") }, 2000)
-
-        } catch (err) {
-            setFormErrors(err);
-            return;
+            setTimeout(() => { navigate("/") }, 2000);
+            setFormData(INITIAL_STATE);
+        } else {
+            setFormErrors(result.errors);
+            setTimeout(() => { setFormErrors([]); }, 2000);
         }
+    }
 
-        setFormErrors([]);
-        setFormData(INITIAL_STATE);
 
-    };
+    const handleToggle = () => {
+        if (type==='password'){
+           setIcon(eye);
+           setType('text')
+        } else {
+           setIcon(eyeOff)
+           setType('password')
+        }
+     }
 
     /** Update local state w/curr state of input elem */
 
@@ -50,14 +59,14 @@ function RegisterForm({ register }) {
     return (
         <div className="RegisterForm">
             <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-                <h3 className="mb-3">Register</h3>
+                <h3 className="mb-4">Register</h3>
                 {
                     isRegister ? <Alert type="success" messages={["Successfully Register"]} /> : null
                 }
                 <div className="card">
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>
-                            <div className="mb-3">
+                            <div className="mb-4">
                                 <label htmlFor="form-label">Username</label>
                                 <input name="username"
                                     id="username"
@@ -68,9 +77,9 @@ function RegisterForm({ register }) {
                                     required
                                 />
                             </div>
-                            <div className="mb-3">
-                                <label htmlFor="form-label">Password</label>
-                                <input type="password"
+                            <label htmlFor="form-label">Password</label>
+                            <div className="mb-4 d-flex">
+                                <input type={type}
                                     id="password"
                                     name="password"
                                     className="form-control"
@@ -79,8 +88,9 @@ function RegisterForm({ register }) {
                                     autoComplete="password"
                                     required
                                 />
+                                <Icon className="iconEye" icon={icon} size={25} onClick={handleToggle}/>
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-4">
                                 <label htmlFor="form-label">First Name</label>
                                 <input name="firstName"
                                     id="firstName"
@@ -90,7 +100,7 @@ function RegisterForm({ register }) {
                                     required
                                 />
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-4">
                                 <label htmlFor="form-label">Last Name</label>
                                 <input name="lastName"
                                     id="lastName"
@@ -100,7 +110,7 @@ function RegisterForm({ register }) {
                                     required
                                 />
                             </div>
-                            <div className="mb-3">
+                            <div className="mb-4">
                                 <label htmlFor="form-label">Email</label>
                                 <input name="email"
                                     id="email"

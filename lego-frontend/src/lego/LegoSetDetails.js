@@ -25,7 +25,6 @@ function LegoSetDetails() {
     useEffect(() => {
         async function fetchData() {
             //console.debug("LegoSets useEffect loadLegoSetsInfo");
-
             let result = await LegoApi.getLegoSet(set_num);
             if (result.detail === "Not found.")
                 setLegoSet([]);

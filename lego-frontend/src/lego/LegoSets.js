@@ -20,14 +20,14 @@ const LegoSets = ({ legoSets }) => {
         <>
             {legoSets.length ?
                 (<div className="LegoSets" >
-                        {
-                            legoSets.map((set) =>
-                                <LegoSet
-                                    key={set.set_num}
-                                    set={set}
-                                />
-                            )}
-                    </div>
+                    {
+                        legoSets.map((set) =>
+                            <LegoSet
+                                key={set.set_num}
+                                set={set}
+                            />
+                        )}
+                </div>
                 ) : (
                     <h2 className="notFound">Sorry, no results were found!</h2>
                 )}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LegoApi from "../LegoApi"
 import LegoSets from "./LegoSets";
-import SearchForm from "../helpers/SearchForm";
+import SearchForm from "../common/SearchForm";
 
 
 /** LegoSetSearch page.
@@ -46,13 +46,15 @@ function LegoSetSearch() {
 
     return (
         <div className="LegoSetSearch">
-
-            <SearchForm key="byName" searchValue={searchByName} term="name" />
+            <h5 className="searchH5">Search a Lego Set</h5>
+            <SearchForm key="byName" searchValue={searchByName} term="name ex. Central Perk" />
             <br />
-            <SearchForm key="byNum" searchValue={searchByNum} term="lego set number" />
+            <SearchForm key="byNum" searchValue={searchByNum} term="lego set number ex. 21319-1" />
+            <br />
+            <h3>Lego Set in the DB</h3>
             <br />
             <LegoSets legoSets={legoSets} />
-           
+            
         </div>
     );
 };

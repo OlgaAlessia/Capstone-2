@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import Alert from "../helpers/Alert";
+import Alert from "../common/Alert";
 import UserContext from "../UserContext";
 import LegoApi from "../LegoApi"
 import { useNavigate } from "react-router-dom";
@@ -43,8 +43,6 @@ function ProfileForm() {
      */
     async function handleSubmit(evt) {
         evt.preventDefault();
-
-        console.debug(currentUser);
 
         if (!formData.bio) formData.bio = ""
 

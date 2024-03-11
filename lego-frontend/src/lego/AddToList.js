@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
-import Alert from "../helpers/Alert";
+import Alert from "../common/Alert";
 import UserContext from "../UserContext"
 import LegoApi from "../LegoApi"
 import "./Lego.css";

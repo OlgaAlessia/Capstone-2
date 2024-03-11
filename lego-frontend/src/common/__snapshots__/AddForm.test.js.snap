@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="AddForm mb-2"
+  >
+    <form>
+      <div
+        class="AddForm-row row"
+      >
+        <div
+          class="col-4"
+        >
+          <input
+            class="form-control form-control-md"
+            name="listName"
+            placeholder="Add the name of a new List"
+            value=""
+          />
+        </div>
+        <div
+          class="col-auto"
+        >
+          <button
+            class="btn btn-md btn-success"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+    <br />
+  </div>
+</DocumentFragment>
+`;

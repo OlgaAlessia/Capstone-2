@@ -4,8 +4,7 @@ const REBRICKABLE_URL = 'https://rebrickable.com/api/v3'
 const REBRICKABLE_KEY = process.env.REACT_APP_REBRICKABLE_KEY;
 const USER_LEGO_TOKEN = process.env.REACT_APP_MY_LEGO_TOKEN;
 
-/** RebrickableApi Class.
- */
+/* RebrickableApi Class. */
 
 class RebrickableApi {
 

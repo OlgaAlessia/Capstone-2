@@ -1,7 +1,7 @@
 import axios from "axios";
 import RebrickableApi from "./RebrickableApi"
 
-const BASE_URL = 'http://localhost:3001'; //process.env.REACT_APP_BASE_URL || 
+const BASE_URL = 'http://localhost:3001'; 
 
 
 /** API Class.
@@ -110,9 +110,9 @@ class LegoApi {
     let res = await this.request(`legosets/byuser/${user_id}`);
 
     let myListSetsNums = [];
-    res.set.map(val => (myListSetsNums.push(val.lego_sets_num))
-    )
-
+    if(res.length !== 0){
+      res.set.map(val => (myListSetsNums.push(val.lego_sets_num)))
+    }
     return myListSetsNums;
   }
 
@@ -142,11 +142,19 @@ class LegoApi {
 
     let res = await this.request(`lists/${user_id}`);
     return res;
+  }
+
+    /** Get the Number of List with the user_id. */
+
+  static async getNumListByUser(user_id) {
+
+    let res = await this.request(`lists/numList/${user_id}`);
+    return res;
 
   }
 
   static async deleteList(id) {
-    return await this.request(`lists/${id}`, {}, "delete");
+    return await this.request(`lists/${id}`, "delete");
   }
 
 

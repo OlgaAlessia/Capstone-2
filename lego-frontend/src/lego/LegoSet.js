@@ -13,15 +13,23 @@ import "./Lego.css";
 const LegoSet = ({ set }) => {
     const { currentUser } = useContext(UserContext);
     const [isOnMyList, setIsOnMyList] = useState(false);
+    const [showButton, setShowButton] = useState(false);
     const [myListSetsNums, setMyListSetsNums] = useState([]);
 
-
     useEffect(() => {
-        LegoApi.getAllLegoSetsByUser(currentUser.id).then((result) => setMyListSetsNums(result));
+        if (currentUser.lists.length === 0) {
+            setMyListSetsNums([]);
+            setShowButton(false);
+        }
+        else {
+            LegoApi.getAllLegoSetsByUser(currentUser.id).then((result) => setMyListSetsNums(result));
+            setShowButton(true);
+        }
     }, [currentUser]);
 
     useEffect(() => {
         setIsOnMyList(myListSetsNums.includes(set.set_num));
+
     }, [myListSetsNums, set]);
 
     return (
@@ -31,9 +39,9 @@ const LegoSet = ({ set }) => {
 
             <Link to={`/legosets/${set.set_num}`}>{set.name}</Link>
 
-            {!isOnMyList && (
+            {(!isOnMyList && (showButton)) && (
 
-                <Link to='/list' state={{ setNum: set.set_num}} className="btn addTolist-button"> Add to List </Link>
+                <Link to='/list' state={{ setNum: set.set_num }} className="btn addTolist-button"> Add to List </Link>
             )}
         </div>
     );

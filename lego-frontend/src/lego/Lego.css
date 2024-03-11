@@ -221,6 +221,11 @@ color: white;
 
 /**** LegoSetSearch ****/
 
+.LegoSetSearch .searchH5{
+  text-align: left;
+}
+
+
 .LegoSetSearch .addTolist-button {
     color: #198754 !important;
     background-color: lightgrey !important;
