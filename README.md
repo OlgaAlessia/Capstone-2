@@ -26,8 +26,6 @@ Since this is a demonstration, login with testUser - password
 - Choose the list where to save the Lego Set
 - See all the information about the Lego Sets
 - See the Moc instructions for a lego set
-- Modify the password 
-
 
 
 ## To-do list:
@@ -35,6 +33,7 @@ Since this is a demonstration, login with testUser - password
 * Add lego parts 
 * Responsive design
 * Add more features
+* Modify the password 
 
 
 ## Responsive Design
